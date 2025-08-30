@@ -20,7 +20,9 @@ export function ProjectsView({ onNavigate }: ProjectsViewProps) {
   const loadProjects = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/projects");
+      const response = await fetch(
+        "https://mindsite.onrender.com/api/projects"
+      );
       if (response.ok) {
         const data = await response.json();
         setProjects(data);
@@ -37,20 +39,23 @@ export function ProjectsView({ onNavigate }: ProjectsViewProps) {
     if (!name) return;
 
     try {
-      const response = await fetch("/api/projects", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          description: "",
-          components: [],
-          settings: {
-            theme: "light",
-            primaryColor: "#3b82f6",
-            fontFamily: "Inter",
-          },
-        }),
-      });
+      const response = await fetch(
+        "https://mindsite.onrender.com/api/projects",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            description: "",
+            components: [],
+            settings: {
+              theme: "light",
+              primaryColor: "#3b82f6",
+              fontFamily: "Inter",
+            },
+          }),
+        }
+      );
 
       if (response.ok) {
         const newProject = await response.json();

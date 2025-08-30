@@ -168,11 +168,14 @@ const AdvancedToolbar = () => {
   const handleSave = async () => {
     try {
       // Save to backend
-      await fetch("/api/projects/" + currentProject.id, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(currentProject),
-      });
+      await fetch(
+        "https://mindsite.onrender.com/api/projects/" + currentProject.id,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(currentProject),
+        }
+      );
       toast.success("Project saved successfully!");
     } catch (error) {
       toast.error("Failed to save project");

@@ -66,7 +66,9 @@ const ProjectManager: React.FC = () => {
   const loadProjects = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("/api/projects");
+      const response = await fetch(
+        "https://mindsite.onrender.com/api/projects"
+      );
       const data = await response.json();
       setProjects(data.projects || []);
     } catch (error) {
@@ -79,20 +81,23 @@ const ProjectManager: React.FC = () => {
 
   const createProject = async (projectData: Partial<Project>) => {
     try {
-      const response = await fetch("/api/projects", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: projectData.name,
-          description: projectData.description,
-          components: [],
-          settings: {
-            theme: "light",
-            primaryColor: "#3B82F6",
-            fontFamily: "Inter",
-          },
-        }),
-      });
+      const response = await fetch(
+        "https://mindsite.onrender.com/api/projects",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: projectData.name,
+            description: projectData.description,
+            components: [],
+            settings: {
+              theme: "light",
+              primaryColor: "#3B82F6",
+              fontFamily: "Inter",
+            },
+          }),
+        }
+      );
 
       const newProject = await response.json();
       setProjects((prev) => [newProject, ...prev]);
@@ -118,16 +123,19 @@ const ProjectManager: React.FC = () => {
 
   const duplicateProject = async (project: Project) => {
     try {
-      const response = await fetch("/api/projects", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: `${project.name} (Copy)`,
-          description: project.description,
-          components: project.components,
-          settings: project.settings,
-        }),
-      });
+      const response = await fetch(
+        "https://mindsite.onrender.com/api/projects",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: `${project.name} (Copy)`,
+            description: project.description,
+            components: project.components,
+            settings: project.settings,
+          }),
+        }
+      );
 
       const duplicatedProject = await response.json();
       setProjects((prev) => [duplicatedProject, ...prev]);
