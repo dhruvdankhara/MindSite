@@ -1,0 +1,35 @@
+{
+  "name": "ai-website-builder-server",
+  "version": "2.0.0",
+  "description": "Backend API for AI-powered website builder",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node src/app.js",
+    "dev:watch": "node --watch src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"Linting not configured\"",
+    "migrate": "node scripts/migrate.js"
+  },
+  "keywords": [
+    "ai",
+    "website-builder",
+    "api",
+    "express",
+    "sqlite",
+    "gemini"
+  ],
+  "author": "AI Website Builder Team",
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1",
+    "sqlite3": "^5.1.7"
+  }
+}
