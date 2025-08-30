@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Palette,
@@ -15,17 +15,50 @@ import {
   Download,
   Share2,
   Settings as SettingsIcon,
-  Zap,
   Code,
   Eye,
-  Globe,
 } from "lucide-react";
 import { toast } from "react-hot-toast";
 
+// Add interface for ToolButton props
+interface ToolButtonProps {
+  tool: {
+    id: string;
+    icon: React.ComponentType<{ className?: string }>;
+    label: string;
+    panel?: string;
+    action?: string;
+    disabled?: boolean;
+  };
+  isActive: boolean;
+  onClick: () => void;
+  disabled?: boolean;
+}
+
+// Add interface for component structure
+interface ComponentProps {
+  className?: string;
+  text?: string;
+  title?: string;
+  [key: string]: any;
+}
+
+interface Component {
+  type?: string;
+  props?: ComponentProps;
+  [key: string]: any;
+}
+
+interface WebsitePreviewProps {
+  components: Component[];
+}
+
 const AdvancedToolbar = () => {
   const dispatch = useDispatch();
-  const { currentProject, settings } = useSelector((state) => state.builder);
-  const [activePanel, setActivePanel] = useState(null);
+  const { currentProject, settings } = useSelector(
+    (state: any) => state.builder
+  );
+  const [activePanel, setActivePanel] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState("desktop");
   const [showPreview, setShowPreview] = useState(false);
 
@@ -106,7 +139,7 @@ const AdvancedToolbar = () => {
     { id: "mobile", icon: Smartphone, label: "Mobile", width: "375px" },
   ];
 
-  const handleToolClick = (tool) => {
+  const handleToolClick = (tool: ToolButtonProps["tool"]) => {
     if (tool.action) {
       switch (tool.action) {
         case "toggleTheme":
@@ -146,7 +179,7 @@ const AdvancedToolbar = () => {
     }
   };
 
-  const handleExport = async (format) => {
+  const handleExport = async (format: string) => {
     try {
       const response = await fetch("/api/export", {
         method: "POST",
@@ -209,6 +242,7 @@ const AdvancedToolbar = () => {
                 tool={tool}
                 isActive={activePanel === tool.panel}
                 onClick={() => handleToolClick(tool)}
+                disabled={undefined}
               />
             ))}
 
@@ -331,7 +365,7 @@ const AdvancedToolbar = () => {
   );
 };
 
-const ToolButton = ({ tool, isActive, onClick, disabled }) => (
+const ToolButton = ({ tool, isActive, onClick, disabled }: ToolButtonProps) => (
   <button
     onClick={onClick}
     disabled={disabled}
@@ -579,7 +613,7 @@ const ResponsivePanel = () => {
 };
 
 // Export Panel
-const ExportPanel = ({ onExport }) => {
+const ExportPanel = ({ onExport }: { onExport: (format: string) => void }) => {
   const formats = [
     { id: "html", name: "HTML", description: "Static HTML with CSS" },
     { id: "react", name: "React", description: "React components (JSX)" },
@@ -668,7 +702,7 @@ const SettingsPanel = () => {
             </label>
             <textarea
               className="w-full p-2 border border-gray-300 rounded-lg dark:border-gray-600 dark:bg-gray-700"
-              rows="3"
+              rows={3}
               placeholder="Describe your project..."
             />
           </div>
@@ -679,7 +713,7 @@ const SettingsPanel = () => {
 };
 
 // Website Preview Component
-const WebsitePreview = ({ components }) => {
+const WebsitePreview = ({ components }: WebsitePreviewProps) => {
   return (
     <div className="min-h-full">
       {components.map((component, index) => (

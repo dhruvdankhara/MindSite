@@ -331,11 +331,11 @@ export default GeneratedWebsite;`;
                       <span className="w-4 h-4 bg-green-500 rounded-full mr-2"></span>
                       <span className="capitalize">{component.type}</span>
                       {component.props.text &&
-                        typeof component.props.text === "string" && (
+                        typeof component.props.text === "string" ? (
                           <span className="ml-2 text-gray-500">
-                            - "{component.props.text.substring(0, 30)}..."
+                            - "{(component.props.text as string).substring(0, 30)}..."
                           </span>
-                        )}
+                        ) : null}
                     </div>
                   ))}
                 </div>

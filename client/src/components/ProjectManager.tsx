@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCurrentProject } from "../store/slices/projectSlice";
 import type { Project as ReduxProject } from "../store/slices/projectSlice";
 import {
   FolderPlus,
   Search,
-  Filter,
   MoreVertical,
   Star,
   Clock,
@@ -18,8 +17,6 @@ import {
   Eye,
   Grid,
   List,
-  SortAsc,
-  Calendar,
 } from "lucide-react";
 
 interface Project {

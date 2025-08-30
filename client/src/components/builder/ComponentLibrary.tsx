@@ -1,4 +1,4 @@
-import { Type, Square, Image, Layout, MousePointer } from "lucide-react";
+import { Type, Image, Layout, MousePointer } from "lucide-react";
 import type { Component, ComponentType } from "../../types";
 
 interface ComponentLibraryProps {

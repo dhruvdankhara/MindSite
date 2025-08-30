@@ -87,7 +87,12 @@ function AppContent() {
               <PropertiesPanel />
             </div>
             <EnhancedAIAssistant />
-            <ExportModal />
+            <ExportModal
+              isOpen={false}
+              onClose={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
           </div>
         );
 

@@ -8,10 +8,11 @@ import {
 } from "../store/slices/aiSlice";
 import { addComponent } from "../store/slices/builderSlice";
 import { createComponentFromTemplate } from "../lib/componentLibrary";
+import type { RootState } from "@/store";
 
 export const AIAssistant: React.FC = () => {
   const dispatch = useAppDispatch();
-  const aiState = useAppSelector((state) => state.ai);
+  const aiState = useAppSelector((state: RootState) => state.ai);
   const { currentPrompt, isGenerating, suggestions, prompts, error } = aiState;
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -196,7 +197,7 @@ export const AIAssistant: React.FC = () => {
           Quick Suggestions
         </h3>
         <div className="space-y-2">
-          {suggestions.slice(0, 3).map((suggestion, index) => (
+          {suggestions.slice(0, 3).map((suggestion: string, index: number) => (
             <button
               key={index}
               onClick={() => handleSuggestionClick(suggestion)}

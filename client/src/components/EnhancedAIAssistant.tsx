@@ -1,18 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   MessageCircle,
   Send,
   Sparkles,
-  Wand2,
   Code,
   Layout,
-  Palette,
   Type,
   Image,
   Settings,
   Lightbulb,
-  Zap,
   X,
   Copy,
   ThumbsUp,

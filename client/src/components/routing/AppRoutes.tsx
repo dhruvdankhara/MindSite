@@ -19,7 +19,7 @@ export function AppRoutes() {
       return <ProjectsView onNavigate={handleNavigate} />;
 
     case "builder":
-      return <BuilderView onNavigate={handleNavigate} />;
+      return <BuilderView />;
 
     default:
       return <WelcomeView onNavigate={handleNavigate} />;
